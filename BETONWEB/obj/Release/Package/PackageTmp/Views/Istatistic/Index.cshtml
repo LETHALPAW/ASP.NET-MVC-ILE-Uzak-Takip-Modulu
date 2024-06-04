@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | ChartJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">REÇETE BAZLI ÜRETİM</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <div id="uretimBazindaReceteler" style="height: 500px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">MİKSER RAPORU</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <div id="mixerBazliSeferler" style="height: 500px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">POMPA RAPORU</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <div id="pompaBazliSeferler" style="height: 500px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">ÜRETİM RAPORU</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <div id="ayBazindaUretimler" style="height: 500px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">SİPARİŞ DURUMU</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="ilkTarih">İlk Tarih:</label>
+                                            <input id="ilkTarih" name="ilkTarih" type="date" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="sonTarih">Son Tarih:</label>
+                                            <input id="sonTarih" name="sonTarih" type="date" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <input id="musteriBazindaSiparisBtn" type="submit" value="Ara" class="btn btn-dark btn-block" />
+                                    </div>
+                                </div>
+                                <div class="chart">
+                                    <div id="musteriBazindaSiparisler" style="height: 2500px;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+</body>
+</html>
+
+<script>
+$(document).ready(function () {
+
+    // API'den gelen veriyi JavaScript nesnesine dönüştür
+    var uretimBazindaReceteler = @Html.Raw(Json.Encode(ViewData["UretimBazindaRecete"]));
+    var mixerBazliSefer = @Html.Raw(Json.Encode(ViewData["mixerBazliSefer"]));
+    var pompaBazliSefer = @Html.Raw(Json.Encode(ViewData["pompaBazliSefer"]));
+    var ayBazindaUretimler = @Html.Raw(Json.Encode(ViewData["ayBazindaUretimler"]));
+
+    // Her bir pie chart için createPieChart fonksiyonunu çağır
+    createPieChart('uretimBazindaReceteler', uretimBazindaReceteler, 'Üretim Bazında Receteler', 'NETMİKTAR','Recete_Adi');
+    createPieChart('mixerBazliSeferler', mixerBazliSefer, 'Mixer Bazlı Seferler', 'SEFER', 'SURUCUADISOYADI');
+    createPieChart('pompaBazliSeferler', pompaBazliSefer, 'Pompa Bazlı Seferler', 'SEFER', 'POMPALISURUCUADISOYADI');
+
+    createLineChart('ayBazindaUretimler', ayBazindaUretimler, 'ayBazindaUretimler', 'Üst Miktar', 'Aylar');
+});
+
+
+    $(document).ready(function () {
+        $('#musteriBazindaSiparisBtn').click(function (e) {
+            e.preventDefault();
+            var ilkTarih = $('#ilkTarih').val();
+            var sonTarih = $('#sonTarih').val();
+            musteriBazindaSiparisler(ilkTarih, sonTarih); // Fonksiyon çağrısı
+        });
+    });
+</script>

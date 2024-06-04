@@ -1,0 +1,52 @@
+﻿@using BETONWEB.Models.Entity;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.SpendInformation>;
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+}
+
+<br />
+@using (Html.BeginForm("Index", "Spend", FormMethod.Post))
+{
+    <link rel="stylesheet" href="cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<table id="table" class="table table-hover">
+    <thead>
+        <tr>
+            <th>MALZEME ADI</th>
+            <th>TOPLAM ÜRETİLEN MİKTAR</th>
+            <th>TOPLAM HARCANAN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (veriler != null)
+        {
+            foreach (var item in veriler)
+            {
+                <tr>
+                    <td>@item.MalzemeAdi</td>
+                    <td>@item.ToplamUretilenMiktar</td>
+                    <td>@item.ToplamHarcanan</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+

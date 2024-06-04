@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.ShipmentInformation>;
+
+    // Varsayılan tarih
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+}
+<br />
+@using (Html.BeginForm("Index", "Shipment", FormMethod.Post))
+{
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<table id="table" class="table table-hover">
+    <thead>
+        <tr>
+            <th>ÜRETİLEN MİKTAR</th>
+            <th>NET MİKTAR</th>
+            <th>MÜŞTERİ ADI</th>
+            <th>ŞANTİYE ADI</th>
+            <th>REÇETE ADI</th>
+            <th>HİZMET ADI</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (veriler != null)
+        {
+            foreach (var item in veriler)
+            {
+                <tr>
+                    <td>@item.UretilenMiktar</td>
+                    <td>@item.NetMiktar</td>
+                    <td>@item.Musteri_Adi</td>
+                    <td>@item.Santiye_Adi</td>
+                    <td>@item.Recete_Adi</td>
+                    <td>@item.Hizmet_Adi</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

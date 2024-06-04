@@ -1,0 +1,3 @@
+﻿$(function () {
+    #("#tblInvoice").DataTable();
+});

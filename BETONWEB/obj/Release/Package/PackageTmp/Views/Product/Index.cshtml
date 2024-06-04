@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.ProductInformation>;
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+}
+<br />
+@using (Html.BeginForm("Index", "CustomerProduct", FormMethod.Post))
+{
+    <link rel="stylesheet" href="cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<div class="table-responsive">
+    <table id="table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>TARİH</th>
+                <th>ÜRETİM NO</th>
+                <th>REÇETE ADI</th>
+                <th>TESİS ADI</th>
+                <th>ÜRETİLEN</th>
+                <th>HAZIR MİK.</th>
+                <th>İADE MİK.</th>
+                <th>FREE MİK.</th>
+                <th>NET MİK.</th>
+                <th>ÜRETİM FAZLASI</th>
+                <th>MÜŞTERİ ADI</th>
+                <th>HİZMET</th>
+                <th>KAMYON</th>
+                <th>POMPA</th>
+                <th>POMPA PLAKA</th>
+                <th>SÜRÜCÜ</th>
+                <th>POMPACI</th>
+                <th>REÇETE SINIFI</th>
+                <th>E-İRS NO</th>
+                <th>REÇETE KODU</th>
+                <th>ÜRETİM BİTİŞ</th>
+                <th>ÜRETİM BAŞLAMA</th>
+                <th>TOPLAM PERİYOT</th>
+                <th>SİPARİŞ KODU</th>
+                <th>REÇETE KODU</th>
+                <th>İRSALİYE NO</th>
+                <th>TOPLAM SÜRE</th>
+                <th>AÇIKLAMA</th>
+                <th>MÜŞTERİ KODU</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (veriler != null)
+            {
+                foreach (var item in veriler)
+                {
+                    <tr>
+                        <td>@item.Tarih</td>
+                        <td>@item.Uretim_No</td>
+                        <td>@item.Recete_Adi</td>
+                        <td>@item.Tesis_Id</td>
+                        <td>@item.UretilenMiktar</td>
+                        <td>@item.HazirMiktar</td>
+                        <td>@item.IadeMiktar</td>
+                        <td>@item.FreeMiktar</td>
+                        <td>@item.NetMiktar</td>
+                        <td>@item.UretimFazlasi</td>
+                        <td>@item.Musteri_Adi</td>
+                        <td>@item.Hizmet_Adi</td>
+                        <td>@item.Kamyon_Sicil</td>
+                        <td>@item.Pompa</td>
+                        <td>@item.Pompa_Plaka</td>
+                        <td>@item.Surucu_AdiSoyadi</td>
+                        <td>@item.Pompaci</td>
+                        <td>@item.Recete_Sinifi</td>
+                        <td>@item.EIrsaliyeNo</td>
+                        <td>@item.Recete_Kodu</td>
+                        <td>@item.UretimBitisTarihi</td>
+                        <td>@item.UretimBaslamaTarihi</td>
+                        <td>@item.Toplam_Periyot</td>
+                        <td>@item.Siparis_Kodu</td>
+                        <td>@item.Recete_Kodu</td>
+                        <td>@item.Irsaliye_No</td>
+                        <td>@item.Toplam_Sure</td>
+                        <td>@item.Aciklama</td>
+                        <td>@item.Musteri_Kodu</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

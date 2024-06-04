@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.DriverInformation>;
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+
+}
+
+<br />
+@using (Html.BeginForm("Index", "Driver", FormMethod.Post))
+{
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<table id="table" class="table table-hover">
+    <thead>
+        <tr>
+            <th>TESİS ADI</th>
+            <th>SÜRÜCÜ ADI SOYADI</th>
+            <th>KAMYON PLAKA</th>
+            <th>ÜRETİLEN MİKTAR</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (veriler != null)
+        {
+            foreach (var item in veriler)
+            {
+                <tr>
+                    <td>@item.Tesis_Adi</td>
+                    <td>@item.Surucu_AdiSoyadi</td>
+                    <td>@item.Kamyon_Plaka</td>
+                    <td>@item.Uretilen_Miktar</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

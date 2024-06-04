@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.CustomerProductInformation>;
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+}
+<br />
+@using (Html.BeginForm("Index", "CustomerProduct", FormMethod.Post))
+{
+    <link rel="stylesheet" href="cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<table id="table" class="table table-hover">
+    <thead>
+        <tr>
+            <th>TESİS ADI</th>
+            <th>ÜRETİLEN MİKTAR</th>
+            <th>MÜŞTERİ ADI</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (veriler != null)
+        {
+            foreach (var item in veriler)
+            {
+                <tr>
+                    <td>@item.Tesis_Adi</td>
+                    <td>@item.Uretilen_Miktar</td>
+                    <td>@item.Musteri_Adi</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script src="cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>

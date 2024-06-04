@@ -1,0 +1,98 @@
+﻿@using BETONWEB.Models.Entity;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var veriler = ViewData["Veriler"] as IEnumerable<BETONWEB.Models.ViewModel.SpendMaterialsInformation>;
+    DateTime defaultDate = DateTime.Today;
+    string defaultDateString = defaultDate.ToString("yyyy-MM-dd");
+}
+
+<br />
+@using (Html.BeginForm("Index", "SpendMaterials", FormMethod.Post))
+{
+    <link rel="stylesheet" href="cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+
+    <label>İlk Tarih:</label>
+    <input name="ilkTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <label>Son Tarih:</label>
+    <input name="sonTarih" type="date" class="form form-control" value="@defaultDateString" />
+    <br />
+    <input type="submit" value="Ara" class="btn btn-dark" />
+    <br />
+    <br />
+}
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">ÜRETİM BAZINDA HARCANAN MALZEMELER</h4>
+                <div class="data-tables datatable-dark">
+                    <table id="dataTable" class="table table-striped table-bordered text-center">
+                        <thead class="text-capitalize">
+                            <tr>
+                                <th>Uretilen Miktar</th>
+                                <th>Net Miktar</th>
+                                <th>Recete Adı</th>
+                                <th>Detaylar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (veriler != null)
+                            {
+                                var groupedItems = (veriler)
+                            .GroupBy(item => item.Uretimler_Id)
+                            .Select(group => group.First())
+                            .ToList();
+
+                                foreach (var item in groupedItems)
+                                {
+                                    <tr data-id="@item.Uretimler_Id">
+                                        <td>@item.UretilenMiktar</td>
+                                        <td>@item.NetMiktar</td>
+                                        <td>@item.Recete_Adi</td>
+                                        <td scope="col">
+                                            <a class="text-secondary" href="" data-toggle="collapse" data-target="#hammaddeler-@item.Uretimler_Id">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr id="hammaddeler-@item.Uretimler_Id" class="collapse">
+                                        <td colspan="4">
+                                            <table class="table table-striped table-bordered text-center">
+                                                <thead class="text-capitalize">
+                                                    <tr>
+                                                        <th>Malzeme Adı</th>
+                                                        <th>Toplam</th>
+                                                        <!-- Diğer kolonlar -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var itemhammadde in (veriler).Where(x => x.Uretimler_Id == item.Uretimler_Id))
+                                                    {
+                                                        <tr>
+                                                            <td>@itemhammadde.MalzemeAdi</td>
+                                                            <td>@itemhammadde.Toplam</td>
+                                                            <!-- Diğer kolonlar -->
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
